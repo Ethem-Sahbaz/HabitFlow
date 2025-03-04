@@ -6,9 +6,18 @@ var keycloak = builder.AddKeycloak("keycloak", 8080)
     .WithLifetime(ContainerLifetime.Persistent)
     .WithExternalHttpEndpoints();
 
-// Research what WithExternalHttpEndpoints does.
+
+var sql = builder.AddSqlServer(name: "sql", port: 1533)
+    .WithDataVolume()
+    .WithLifetime(ContainerLifetime.Persistent);
+
+var db = sql.AddDatabase("HabitFlowDb");
+
+
 builder.AddProject<Projects.HabitFlow_Api>("habitflow-api")
     .WithExternalHttpEndpoints()
+    .WithReference(db)
+    .WaitFor(db)
     .WithReference(keycloak)
     .WaitFor(keycloak);
 

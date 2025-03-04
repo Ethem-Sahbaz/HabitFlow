@@ -1,3 +1,6 @@
+using HabitFlow.Infrastructure;
+using Microsoft.Data.SqlClient;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
@@ -5,6 +8,8 @@ builder.AddServiceDefaults();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+builder.AddSqlServerClient("HabitFlowDb");
 
 builder.Services.AddAuthorization();
 
@@ -33,7 +38,7 @@ app.UseAuthorization();
 app.UseHttpsRedirection();
 
 
-app.MapGet("/", () =>
+app.MapGet("/", (SqlConnection sql) =>
 {
     return "Nothing yet.";
 })
