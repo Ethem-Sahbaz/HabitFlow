@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HabitFlow.Application", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HabitFlow.Infrastructure", "src\HabitFlow.Infrastructure\HabitFlow.Infrastructure.csproj", "{6FF88F76-CD05-4036-915D-43E91EF1D0FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HabitFlow.SharedKernel", "src\HabitFlow.SharedKernel\HabitFlow.SharedKernel.csproj", "{2E4DEF1F-0660-41C8-81CD-57FC85B69C71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{6FF88F76-CD05-4036-915D-43E91EF1D0FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FF88F76-CD05-4036-915D-43E91EF1D0FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FF88F76-CD05-4036-915D-43E91EF1D0FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E4DEF1F-0660-41C8-81CD-57FC85B69C71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E4DEF1F-0660-41C8-81CD-57FC85B69C71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E4DEF1F-0660-41C8-81CD-57FC85B69C71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E4DEF1F-0660-41C8-81CD-57FC85B69C71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,5 +68,6 @@ Global
 		{28B75DF7-F2F6-43D8-811B-E3CC014D2D1D} = {2203805D-0616-4989-B3C0-8EA21B3B90B8}
 		{BF796C41-6897-4E57-AEB7-34B196531BAF} = {2203805D-0616-4989-B3C0-8EA21B3B90B8}
 		{6FF88F76-CD05-4036-915D-43E91EF1D0FE} = {2203805D-0616-4989-B3C0-8EA21B3B90B8}
+		{2E4DEF1F-0660-41C8-81CD-57FC85B69C71} = {2203805D-0616-4989-B3C0-8EA21B3B90B8}
 	EndGlobalSection
 EndGlobal
