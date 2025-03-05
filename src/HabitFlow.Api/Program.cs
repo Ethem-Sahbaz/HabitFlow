@@ -4,22 +4,10 @@ using Microsoft.Data.SqlClient;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
+builder.AddAspireInfrastructureOrchestration();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-
-builder.AddSqlServerClient("HabitFlowDb");
-
-builder.Services.AddAuthorization();
-
-builder.Services.AddAuthentication()
-    .AddKeycloakJwtBearer("keycloak", realm: "habitflow", options =>
-    {
-        options.RequireHttpsMetadata = false;
-        options.Audience = "account";
-    });
-
 
 var app = builder.Build();
 
