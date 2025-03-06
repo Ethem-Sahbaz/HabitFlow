@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HabitFlow.Domain\HabitFlow.Domain.csproj" />
     <ProjectReference Include="..\HabitFlow.SharedKernel\HabitFlow.SharedKernel.csproj" />
   </ItemGroup>
 
