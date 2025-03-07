@@ -1,4 +1,3 @@
 ﻿namespace HabitFlow.Application.Abstractions.Identity;
-public class RegisterUserModel
-{
-}
+
+public sealed record UserModel(string Email, string Password, string FirstName, string LastName);

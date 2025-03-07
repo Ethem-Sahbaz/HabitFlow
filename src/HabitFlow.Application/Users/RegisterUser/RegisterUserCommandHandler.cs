@@ -14,8 +14,8 @@ internal sealed class RegisterUserCommandHandler : ICommandHandler<RegisterUserC
 
     public async Task<Result<Guid>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
-        // TODO: Pass in RegisterUserModel parameters
-        await _identityProviderService.RegisterUserAsync(new RegisterUserModel(), cancellationToken);
+        await _identityProviderService.RegisterUserAsync(
+            new UserModel(request.Email, request.Password, request.FirstName, request.LastName), cancellationToken);
 
         return Guid.NewGuid();
     }

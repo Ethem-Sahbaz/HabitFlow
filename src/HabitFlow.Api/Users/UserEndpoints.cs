@@ -12,7 +12,7 @@ public static class UserEndpoints
             if (request.Email is not null && request.Password is not null)
             {
                 var result = await sender.Send(
-                    new RegisterUserCommand(request.Email, request.Password));
+                    new RegisterUserCommand(request.Email, request.Password, request.FirstName, request.LastName));
             }
         });
 
@@ -22,5 +22,7 @@ public static class UserEndpoints
     {
         public string? Email { get; init; }
         public string? Password { get; init; }
+        public string FirstName { get; init; }
+        public string LastName { get; init; }
     }
 }

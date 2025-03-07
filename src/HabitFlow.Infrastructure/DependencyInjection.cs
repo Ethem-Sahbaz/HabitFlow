@@ -1,5 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using HabitFlow.Application.Abstractions.Identity;
+using HabitFlow.Infrastructure.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace HabitFlow.Infrastructure;
 public static class DependencyInjection
@@ -23,6 +27,10 @@ public static class DependencyInjection
 
     private static void AddKeycloakAuthentication(IHostApplicationBuilder builder)
     {
+        builder.Services.AddTransient<IIdentityProviderService, IdentityProviderService>();
+
+        var configuration = builder.Configuration;
+
         builder.Services.AddAuthorization();
 
         builder.Services.AddAuthentication()
@@ -31,5 +39,15 @@ public static class DependencyInjection
                 options.RequireHttpsMetadata = false;
                 options.Audience = "account";
             });
+
+        builder.Services.Configure<KeyCloakOptions>(configuration.GetSection("KeyCloak"));
+        
+        builder.Services.AddHttpClient<KeyCloakService>((serviceProvider, client) =>
+        {
+            var keycloakOptions = serviceProvider.GetRequiredService<IOptions<KeyCloakOptions>>().Value;
+
+            client.BaseAddress = new Uri(keycloakOptions.AdminUrl);
+            
+        });
     }
 }
