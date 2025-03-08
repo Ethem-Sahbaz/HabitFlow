@@ -3,7 +3,7 @@ using HabitFlow.Application.Abstractions.Messaging;
 using HabitFlow.SharedKernel;
 
 namespace HabitFlow.Application.Users.RegisterUser;
-internal sealed class RegisterUserCommandHandler : ICommandHandler<RegisterUserCommand, Guid>
+internal sealed class RegisterUserCommandHandler : ICommandHandler<RegisterUserCommand, string>
 {
     private readonly IIdentityProviderService _identityProviderService;
 
@@ -12,11 +12,20 @@ internal sealed class RegisterUserCommandHandler : ICommandHandler<RegisterUserC
         _identityProviderService = identityProviderService;
     }
 
-    public async Task<Result<Guid>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+    public async Task<Result<string>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
-        await _identityProviderService.RegisterUserAsync(
-            new UserModel(request.Email, request.Password, request.FirstName, request.LastName), cancellationToken);
+        var registerUserResult = await _identityProviderService.RegisterUserAsync(
+            new UserModel(request.Email, request.Password, request.FirstName, request.LastName),
+            cancellationToken);
 
-        return Guid.NewGuid();
+        if (registerUserResult.IsFailure)
+        {
+            return Result.Failure<string>(registerUserResult.Error);
+        }
+
+        //TODO: Insert new created user to db
+
+        
+        return registerUserResult.Value;
     }
 }

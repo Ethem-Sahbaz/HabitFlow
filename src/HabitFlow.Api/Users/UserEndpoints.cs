@@ -13,7 +13,15 @@ public static class UserEndpoints
             {
                 var result = await sender.Send(
                     new RegisterUserCommand(request.Email, request.Password, request.FirstName, request.LastName));
+
+                if(result.IsSuccess)
+                {
+                    // TODO: Provide location url.
+                    return Results.Created("", result.Value);
+                }
             }
+
+            return Results.BadRequest();
         });
 
     }

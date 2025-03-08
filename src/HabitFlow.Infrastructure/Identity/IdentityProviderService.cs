@@ -23,8 +23,13 @@ internal sealed class IdentityProviderService : IIdentityProviderService
             true,
             [new CredentialRepresentation("password", user.Password, false)]);
 
-        await _keyCloakService.RegisterUserAsync(userRepresentation, cancellationToken);
+        var registerUserResult = await _keyCloakService.RegisterUserAsync(userRepresentation, cancellationToken);
 
-        return Result.Success("Test");
+        if (registerUserResult.IsFailure)
+        {
+            return Result.Failure<string>(registerUserResult.Error);
+        }
+
+        return Result.Success(registerUserResult.Value);
     }
 }
