@@ -25,7 +25,7 @@ internal sealed class RegisterUserCommandHandler : ICommandHandler<RegisterUserC
 
         //TODO: Insert new created user to db
 
-        
+
         return registerUserResult.Value;
     }
 }

@@ -7,7 +7,9 @@ internal sealed class KeyCloakService
 {
     private readonly HttpClient _httpClient;
     private readonly KeyCloakOptions _options;
-    public KeyCloakService(HttpClient httpClient, IOptions<KeyCloakOptions> options)
+    public KeyCloakService(
+        HttpClient httpClient,
+        IOptions<KeyCloakOptions> options)
     {
         _httpClient = httpClient;
         _options = options.Value;

@@ -1,6 +1,5 @@
 using HabitFlow.Infrastructure;
 using HabitFlow.Application;
-using Microsoft.Data.SqlClient;
 using HabitFlow.Api.Users;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,13 +29,5 @@ app.UseAuthorization();
 app.UseHttpsRedirection();
 
 app.MapUserEndpoints();
-
-//app.MapGet("/", (SqlConnection sql) =>
-//{
-//    return "Nothing yet.";
-//})
-//.WithName("Root")
-//.WithOpenApi()
-//.RequireAuthorization();
 
 app.Run();
