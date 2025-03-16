@@ -1,6 +1,6 @@
 using HabitFlow.Infrastructure;
 using HabitFlow.Application;
-using HabitFlow.Api.Users;
+using HabitFlow.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +28,6 @@ app.UseAuthorization();
 
 app.UseHttpsRedirection();
 
-app.MapUserEndpoints();
+app.MapEndpoints();
 
 app.Run();

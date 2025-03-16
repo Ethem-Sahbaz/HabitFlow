@@ -1,20 +1,21 @@
-﻿using HabitFlow.Application.Users.RegisterUser;
+﻿using HabitFlow.Api.Abstractions;
+using HabitFlow.Application.Users.RegisterUser;
 using MediatR;
 
 namespace HabitFlow.Api.Users;
 
-public static class UserEndpoints
+internal sealed class Register : IEndpoint
 {
-    public static void MapUserEndpoints(this WebApplication app)
+    public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPost("/users/register", async (Request request, ISender sender) => 
+        app.MapPost("/users/register", async (Request request, ISender sender) =>
         {
             if (request.Email is not null && request.Password is not null)
             {
                 var result = await sender.Send(
                     new RegisterUserCommand(request.Email, request.Password, request.FirstName, request.LastName));
 
-                if(result.IsSuccess)
+                if (result.IsSuccess)
                 {
                     // TODO: Provide location url.
                     return Results.Created("", result.Value);
